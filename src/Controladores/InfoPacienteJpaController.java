@@ -230,7 +230,7 @@ public class InfoPacienteJpaController implements Serializable {
         }
     }
     
-    public Object get_pacienteByID_(int n){
+    public Object get_pacienteByID_(String n){
         EntityManager em = getEntityManager();
         Query Q;
         Object u=0;
@@ -248,5 +248,23 @@ public class InfoPacienteJpaController implements Serializable {
         }
         return u;    
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

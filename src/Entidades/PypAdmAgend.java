@@ -97,6 +97,7 @@ public class PypAdmAgend implements Serializable {
         return estado;
     }
 
+    
     public void setEstado(Character estado) {
         this.estado = estado;
     }
