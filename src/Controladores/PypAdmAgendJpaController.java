@@ -12,6 +12,7 @@ import Entidades.PypAdmAsistCon;
 import Entidades.PypAdmProgramas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,6 +21,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -244,7 +246,6 @@ public class PypAdmAgendJpaController implements Serializable {
             em.close();
         }
     }
-
     public int getPypAdmAgendCount() {
         EntityManager em = getEntityManager();
         try {
@@ -257,5 +258,15 @@ public class PypAdmAgendJpaController implements Serializable {
             em.close();
         }
     }
-    
+  public List<PypAdmAgend>find_Pacientes_Agendados(Date f){
+        EntityManager em=getEntityManager();
+        Query Q=null;
+        try {
+            Q=em.createQuery("SELECT i FROM PypAdmAgend i WHERE i.fecha=:fecha AND i.estado='1'");
+            Q.setParameter("fecha", f);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }  
 }
