@@ -6,7 +6,9 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -37,6 +41,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PypAdmAsistCon.findByHora", query = "SELECT p FROM PypAdmAsistCon p WHERE p.hora = :hora"),
     @NamedQuery(name = "PypAdmAsistCon.findByEstado", query = "SELECT p FROM PypAdmAsistCon p WHERE p.estado = :estado")})
 public class PypAdmAsistCon implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAsistcon")
+    private List<PypAdmAdmision> pypAdmAdmisionList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -146,6 +152,15 @@ public class PypAdmAsistCon implements Serializable {
     @Override
     public String toString() {
         return "Entidades.PypAdmAsistCon[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<PypAdmAdmision> getPypAdmAdmisionList() {
+        return pypAdmAdmisionList;
+    }
+
+    public void setPypAdmAdmisionList(List<PypAdmAdmision> pypAdmAdmisionList) {
+        this.pypAdmAdmisionList = pypAdmAdmisionList;
     }
     
 }

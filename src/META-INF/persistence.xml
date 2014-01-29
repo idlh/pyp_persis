@@ -11,6 +11,8 @@
     <class>Entidades.InfoPaciente</class>
     <class>Entidades.ConfigLogin</class>
     <class>Entidades.PypAdmAgend</class>
+    <class>Entidades.PypAdmAdmision</class>
+    <class>Entidades.PypAdmResp</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.102:3306/database"/>
       <property name="javax.persistence.jdbc.password" value="9RLH5QEwQ4dF"/>

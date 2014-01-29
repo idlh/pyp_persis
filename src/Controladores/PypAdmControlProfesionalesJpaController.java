@@ -6,19 +6,20 @@ package Controladores;
 
 import Controladores.exceptions.IllegalOrphanException;
 import Controladores.exceptions.NonexistentEntityException;
-import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import Entidades.CmProfesionales;
 import Entidades.PypAdmAsistCon;
 import Entidades.PypAdmControlProfesionales;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -227,6 +228,16 @@ public class PypAdmControlProfesionalesJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    public List<PypAdmControlProfesionales>find_Profesionales(){
+        Query Q=null;
+        EntityManager em=getEntityManager();
+        try {
+           Q=em.createQuery("SELECT i FROM PypAdmControlProfesionales i WHERE i.estado='1'");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
     }
     
 }
