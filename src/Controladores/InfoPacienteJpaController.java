@@ -248,23 +248,30 @@ public class InfoPacienteJpaController implements Serializable {
         }
         return u;    
     }
+    public List<InfoPaciente>find_pacientes(){
+        EntityManager em=getEntityManager();
+        Query Q=null;
+        Q=em.createQuery("SELECT p FROM InfoPaciente p WHERE p.estado='1'");
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList(); 
+    }
+    
+     public Object getCountPersona(String doc){
+        EntityManager em = getEntityManager();
+        Query Q=null; 
+            try {
+              Q=em.createQuery("SELECT COUNT(p.id) FROM InfoPaciente p WHERE (p.numDoc=:i) AND (p.estado='1')");
+              Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+              Q.setParameter("i", doc);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());  
+            }
+            return Q.getSingleResult();
+        }
     
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
 }

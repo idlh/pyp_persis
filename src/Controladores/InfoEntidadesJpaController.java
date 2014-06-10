@@ -17,6 +17,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -185,6 +186,16 @@ public class InfoEntidadesJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    public List<InfoEntidades>find_entidades(){
+        EntityManager em=getEntityManager();
+        Query Q=null;
+        try {
+            Q=em.createQuery("SELECT E FROM InfoEntidades E");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
     }
     
 }

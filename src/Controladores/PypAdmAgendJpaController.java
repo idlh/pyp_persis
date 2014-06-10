@@ -263,6 +263,7 @@ public class PypAdmAgendJpaController implements Serializable {
         Query Q=null;
         try {
             Q=em.createQuery("SELECT i FROM PypAdmAgend i WHERE i.fecha=:fecha AND i.estado='1'");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
             Q.setParameter("fecha", f);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
