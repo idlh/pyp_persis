@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author IdlhDeveloper
  */
+
 @Entity
 @Table(name = "info_paciente")
 @XmlRootElement
@@ -64,7 +65,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "InfoPaciente.findByTipoAfiliacion", query = "SELECT i FROM InfoPaciente i WHERE i.tipoAfiliacion = :tipoAfiliacion"),
     @NamedQuery(name = "InfoPaciente.findByNivel", query = "SELECT i FROM InfoPaciente i WHERE i.nivel = :nivel"),
     @NamedQuery(name = "InfoPaciente.findByEstado", query = "SELECT i FROM InfoPaciente i WHERE i.estado = :estado"),
-    @NamedQuery(name = "InfoPaciente.findByFechaHoraIngresoDatos", query = "SELECT i FROM InfoPaciente i WHERE i.fechaHoraIngresoDatos = :fechaHoraIngresoDatos")})
+    @NamedQuery(name = "InfoPaciente.findByFechaHoraIngresoDatos", query = "SELECT i FROM InfoPaciente i WHERE i.fechaHoraIngresoDatos = :fechaHoraIngresoDatos"),
+    @NamedQuery(name = "InfoPaciente.findByCIOU", query = "SELECT i FROM InfoPaciente i WHERE i.ciou = :ciou")
+})
 public class InfoPaciente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -142,6 +145,8 @@ public class InfoPaciente implements Serializable {
     @Column(name = "fecha_hora_ingreso_datos")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraIngresoDatos;
+    @Column(name = "ciou")
+    private Integer ciou;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private List<PypAdmAgend> pypAdmAgendList;
     @JoinColumn(name = "contratante", referencedColumnName = "id")
@@ -430,6 +435,15 @@ public class InfoPaciente implements Serializable {
         this.contratante = contratante;
     }
 
+    public Integer getCiou() {
+        return ciou;
+    }
+
+    public void setCiou(Integer ciou) {
+        this.ciou = ciou;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
