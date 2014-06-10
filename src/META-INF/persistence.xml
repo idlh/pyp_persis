@@ -13,7 +13,11 @@
     <class>Entidades.PypAdmAgend</class>
     <class>Entidades.PypAdmAdmision</class>
     <class>Entidades.PypAdmResp</class>
-    <properties>
+    <class>Entidades.InfoPais</class>
+    <class>Entidades.InfoDepartamentos</class>&gt;    
+    <class>Entidades.InfoMunicipios</class>
+    
+    <class>Entidades.PypCiou</class><properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.102:3306/database"/>
       <property name="javax.persistence.jdbc.password" value="9RLH5QEwQ4dF"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
