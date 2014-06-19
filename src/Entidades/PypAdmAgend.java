@@ -39,6 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PypAdmAgend.findByHora", query = "SELECT p FROM PypAdmAgend p WHERE p.hora = :hora"),
     @NamedQuery(name = "PypAdmAgend.findByEstado", query = "SELECT p FROM PypAdmAgend p WHERE p.estado = :estado")})
 public class PypAdmAgend implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "escolaridad")
+    private short escolaridad;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -150,6 +153,14 @@ public class PypAdmAgend implements Serializable {
     @Override
     public String toString() {
         return "Entidades.PypAdmAgend[ id=" + id + " ]";
+    }
+
+    public short getEscolaridad() {
+        return escolaridad;
+    }
+
+    public void setEscolaridad(short escolaridad) {
+        this.escolaridad = escolaridad;
     }
     
 }
