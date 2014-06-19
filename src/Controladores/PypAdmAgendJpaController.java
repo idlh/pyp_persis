@@ -1,35 +1,37 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Controladores;
 
 import Controladores.exceptions.IllegalOrphanException;
 import Controladores.exceptions.NonexistentEntityException;
+import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import Entidades.InfoPaciente;
 import Entidades.PypAdmAgend;
-import Entidades.PypAdmAsistCon;
 import Entidades.PypAdmProgramas;
-import java.io.Serializable;
+import Entidades.PypAdmAsistCon;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author IdlhDeveloper
+ * @author Modify JPA BY Camilo :D
  */
 public class PypAdmAgendJpaController implements Serializable {
 
-    public PypAdmAgendJpaController() {
+     public PypAdmAgendJpaController() {
         this.emf = Persistence.createEntityManagerFactory("PyP_PersisPU");
     }
     private EntityManagerFactory emf = null;
@@ -246,6 +248,7 @@ public class PypAdmAgendJpaController implements Serializable {
             em.close();
         }
     }
+
     public int getPypAdmAgendCount() {
         EntityManager em = getEntityManager();
         try {
@@ -258,7 +261,7 @@ public class PypAdmAgendJpaController implements Serializable {
             em.close();
         }
     }
-  public List<PypAdmAgend>find_Pacientes_Agendados(Date f){
+      public List<PypAdmAgend>find_Pacientes_Agendados(Date f){
         EntityManager em=getEntityManager();
         Query Q=null;
         try {
@@ -269,5 +272,5 @@ public class PypAdmAgendJpaController implements Serializable {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return Q.getResultList();
-    }  
+    } 
 }
